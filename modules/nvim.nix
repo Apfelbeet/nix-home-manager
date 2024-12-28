@@ -18,7 +18,7 @@ in {
       # alias vim=nvim
       vimAlias = true;
 
-      extraConfig = (builtins.readFile ./config/vim/vimrc);
+      extraConfig = (builtins.readFile ./nvim/init.lua);
 
       # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/vim-plugin-names
       plugins = with pkgs.vimPlugins; [
@@ -26,14 +26,6 @@ in {
 
         # https://www.google.com/search?client=firefox-b-d&q=nvim-catppuccin
         catppuccin-nvim
-
-        {
-          plugin = lightline-vim;
-          config = ''
-            source ${./config/vim/lightline.vim}
-            let g:lightline = {'colorscheme': 't'}
-          '';
-        }
 
         nvim-lspconfig
         nvim-treesitter.withAllGrammars
