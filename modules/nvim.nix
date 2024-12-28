@@ -8,17 +8,14 @@ in {
 
   config = lib.mkIf cfg.enable {
 
-    home.file = { ".vimrc".source = ./config/vim/vimrc; };
 
     # https://github.com/stefanDeveloper/nixos-lenovo-config/blob/master/modules/apps/editor/vim.nix
     programs.neovim = {
-
       enable = true;
-
-      # alias vim=nvim
+      defaultEditor = true;
+      viAlias = true;
       vimAlias = true;
-
-      extraConfig = (builtins.readFile ./nvim/init.lua);
+      vimdiffAlias = true;
 
       # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/vim-plugin-names
       plugins = with pkgs.vimPlugins; [
